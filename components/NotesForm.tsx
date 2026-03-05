@@ -36,7 +36,7 @@ const NotesForm = () => {
         className="mb-4"
       />
 
-      <Button className="bg-blue-500 hover:bg-blue-600" type="submit">
+      <Button className="bg-blue-500 hover:bg-blue-600 max-sm:mt-2 " type="submit">
         Add Note
       </Button>
     </form>

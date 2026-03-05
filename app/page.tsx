@@ -17,7 +17,7 @@ import NoteList from "@/components/NoteList";
 export default function Home() {
   return (
     <>
-      <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-md p-4 border-b border-slate-200 dark:border-slate-700 flex flex-row justify-between items-center shadow-sm">
+      <header className="sticky top-0 z-10 bg-background/80 backdrop-blur-md p-4 border-b border-slate-200 dark:border-slate-700 flex flex-row justify-between items-center shadow-sm text-sm md:text-md ">
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-3">
             <Image src="/convex.svg" alt="Convex Logo" width={32} height={32} />
@@ -42,7 +42,7 @@ export default function Home() {
           </h1>
         </div>
 
-        <SignOutButton />
+        <SignOutButton  />
       </header>
       <main className="p-8 flex flex-col gap-8">
         <Authenticated>

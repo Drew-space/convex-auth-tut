@@ -14,5 +14,5 @@ export default defineSchema({
   notes: defineTable({
     userId: v.id("users"),
     note: v.string(),
-  }),
+  }).index("by_userId", ["userId"]),
 });

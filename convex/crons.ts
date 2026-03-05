@@ -5,7 +5,7 @@ const crons = cronJobs();
 
 crons.interval(
   "clear notes table",
-  { seconds: 10 }, // every minute
+  { minutes: 10 }, // every minute
   internal.notes.deleteAll,
 );
 

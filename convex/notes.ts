@@ -11,7 +11,7 @@ import { RateLimiter, MINUTE } from "@convex-dev/rate-limiter";
 import { components, internal } from "./_generated/api";
 
 const rateLimiter = new RateLimiter(components.rateLimiter, {
-  createNotes: { kind: "fixed window", rate: 100, period: MINUTE },
+  createNotes: { kind: "fixed window", rate: 1, period: MINUTE },
 });
 
 export const createNotes = mutation({

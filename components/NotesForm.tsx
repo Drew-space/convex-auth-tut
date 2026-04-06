@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import { api } from "@/convex/_generated/api";
 import { useMutation } from "convex/react";
 import { toast } from "sonner";
+import { ConvexError } from "convex/values";
 
 const NotesForm = () => {
   const createNote = useMutation(api.notes.createNotes);
@@ -25,8 +26,23 @@ const NotesForm = () => {
           });
           return;
         }
-        await createNote({ note });
-        form.reset();
+
+        try {
+          await createNote({ note });
+          form.reset();
+        } catch (error) {
+          const message =
+            error instanceof ConvexError
+              ? (error.data as string)
+              : "Something went wrong. Please try again.";
+
+          toast.error(message, {
+            style: {
+              border: "px solid red",
+              color: "#fb2c36",
+            },
+          });
+        }
       }}
     >
       <Input
@@ -36,7 +52,10 @@ const NotesForm = () => {
         className="mb-4"
       />
 
-      <Button className="bg-blue-500 hover:bg-blue-600 max-sm:mt-2 " type="submit">
+      <Button
+        className="bg-blue-500 hover:bg-blue-600 max-sm:mt-2 "
+        type="submit"
+      >
         Add Note
       </Button>
     </form>

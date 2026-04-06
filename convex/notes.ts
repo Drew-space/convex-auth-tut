@@ -1,4 +1,4 @@
-import { v } from "convex/values";
+import { ConvexError, v } from "convex/values";
 import {
   internalAction,
   internalMutation,
@@ -27,7 +27,14 @@ export const createNotes = mutation({
     if (!userId) {
       throw new Error("Not authenticated");
     }
-    await rateLimiter.limit(ctx, "createNotes", { key: userId, throws: true });
+    const { ok } = await rateLimiter.limit(ctx, "createNotes", {
+      key: userId,
+      throws: false,
+    });
+
+    if (!ok) {
+      throw new ConvexError("Too many attempts. Please wait a minute.");
+    }
 
     await ctx.db.insert("notes", {
       userId,
